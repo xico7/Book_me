@@ -1,5 +1,5 @@
 from django.test import TestCase
-from Bookme.models import Reservation, Rental
+from Bookme.models import Reservation, Rental, InvalidDatesProvided
 
 
 class ReservationTest(TestCase):
@@ -9,5 +9,9 @@ class ReservationTest(TestCase):
 
     def test_checkout_post_checkin(self):
         """Checkout dates before checkin are invalid form data."""
-        test_reservation = Reservation(associated_rental_name=Rental.objects.all()[0], checkin="2022-01-20", checkout="2022-01-21")
-        test_reservation.save()
+        test_reservation = Reservation(associated_rental_name=Rental.objects.all()[0], checkin="2022-01-22", checkout="2022-01-21")
+        try:
+            test_reservation.save()
+        except InvalidDatesProvided as e:
+            self.assertIsInstance(e, InvalidDatesProvided)
+ 
