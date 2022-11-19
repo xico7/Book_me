@@ -1,15 +1,13 @@
 from django.test import TestCase
-from Bookme.models import Reservation
+from Bookme.models import Reservation, Rental
 
 
-class AnimalTestCase(TestCase):
+class ReservationTest(TestCase):
+
     def setUp(self):
-        Reservation.objects.create(name="lion", sound="roar")
-        Reservation.objects.create(name="cat", sound="meow")
+        Rental.objects.create(name="test_rental")
 
-    def test_animals_can_speak(self):
-        """Animals that can speak are correctly identified"""
-        lion = Animal.objects.get(name="lion")
-        cat = Animal.objects.get(name="cat")
-        self.assertEqual(lion.speak(), 'The lion says "roar"')
-        self.assertEqual(cat.speak(), 'The cat says "meow"')
+    def test_checkout_post_checkin(self):
+        """Checkout dates before checkin are invalid form data."""
+        test_reservation = Reservation(associated_rental_name=Rental.objects.all()[0], checkin="2022-01-20", checkout="2022-01-21")
+        test_reservation.save()

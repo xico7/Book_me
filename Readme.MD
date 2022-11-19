@@ -1,8 +1,8 @@
-I had never touched django before this challenge, only a bit with Flask.
+I had never touched django before this challenge, only played a bit with Flask.
 
 I left some next steps as 'TODOs' as possible improvements on this application.
 
-I have more repos in this github, most active is 'Algotrader'.
+I have more repos in this github, most active is 'Algotrader', cheers.
 
 
 ****************
